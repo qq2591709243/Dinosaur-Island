@@ -14,6 +14,117 @@ body {
     font-family: 'Microsoft YaHei', Arial, sans-serif;
 }
 
+/* ========== 右上角导航 ========== */
+.top-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 15px 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+}
+
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.top-nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* ========== 子页面容器 ========== */
+.page-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 80px 20px 40px;
+    min-height: 100vh;
+}
+
+.page-container h1 {
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ========== 内容卡片 ========== */
+.content-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.content-card h2 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.content-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.content-card.recommended {
+    border: 3px solid #07C160;
+    background: rgba(7, 193, 96, 0.1);
+}
+
+/* 标签 */
+.tag {
+    display: inline-block;
+    padding: 5px 12px;
+    margin: 10px 5px 0 0;
+    background: linear-gradient(135deg, #12B7F5, #0D99D6);
+    color: white;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+/* 配置列表 */
+.spec-list {
+    list-style: none;
+    padding: 0;
+}
+
+.spec-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    color: #555;
+}
+
+.spec-list li:last-child {
+    border-bottom: none;
+}
+
+/* 返回按钮 */
+.back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 30px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
 /* 居中容器 */
 .center-container {
     display: flex;
@@ -106,8 +217,43 @@ body {
         background-attachment: scroll; /* 移动端滚动背景更流畅 */
     }
 
+    /* 导航栏移动端 */
+    .top-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.7);
+        gap: 5px;
+    }
+
+    .top-nav a {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    /* 子页面移动端 */
+    .page-container {
+        padding: 70px 15px 30px;
+    }
+
+    .page-container h1 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+
+    .content-card {
+        padding: 20px;
+    }
+
+    .content-card h2 {
+        font-size: 1.2rem;
+    }
+
     .center-container {
-        padding: 30px 15px;
+        padding: 80px 15px 30px;
     }
 
     .center-container h1 {
