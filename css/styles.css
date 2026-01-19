@@ -109,6 +109,57 @@ body {
     border-bottom: none;
 }
 
+/* ========== 恐龙卡片样式 ========== */
+.dino-card {
+    display: flex;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.dino-card:hover {
+    transform: translateY(-5px);
+}
+
+.dino-image {
+    width: 200px;
+    min-height: 150px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #ddd;
+}
+
+.dino-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.dino-card:hover .dino-image img {
+    transform: scale(1.1);
+}
+
+.dino-info {
+    padding: 20px;
+    flex: 1;
+}
+
+.dino-info h2 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.dino-info p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
 /* 返回按钮 */
 .back-btn {
     display: inline-block;
@@ -246,6 +297,24 @@ body {
 
     .content-card {
         padding: 20px;
+    }
+
+    /* 恐龙卡片移动端 */
+    .dino-card {
+        flex-direction: column;
+    }
+
+    .dino-image {
+        width: 100%;
+        height: 180px;
+    }
+
+    .dino-info {
+        padding: 15px;
+    }
+
+    .dino-info h2 {
+        font-size: 1.1rem;
     }
 
     .content-card h2 {
