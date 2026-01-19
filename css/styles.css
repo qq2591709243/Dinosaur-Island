@@ -82,15 +82,229 @@ body {
     background: rgba(7, 193, 96, 0.1);
 }
 
+/* ========== 卡片网格布局 ========== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+/* ========== 游戏特色卡片 ========== */
+.feature-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.feature-card h2 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* ========== 恐龙卡片V2 ========== */
+.dino-card-v2 {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.dino-card-v2:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.dino-img-wrap {
+    height: 180px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.dino-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.dino-card-v2:hover .dino-img-wrap img {
+    transform: scale(1.1);
+}
+
+.dino-content {
+    padding: 20px;
+}
+
+.dino-content h2 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.dino-name-en {
+    color: #999;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.dino-content > p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.tag-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
 /* 标签 */
 .tag {
     display: inline-block;
     padding: 5px 12px;
-    margin: 10px 5px 0 0;
+    margin: 0;
     background: linear-gradient(135deg, #12B7F5, #0D99D6);
     color: white;
     border-radius: 15px;
+    font-size: 0.75rem;
+}
+
+.tag.red {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+}
+
+.tag.green {
+    background: linear-gradient(135deg, #07C160, #06AD56);
+}
+
+.tag.blue {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* ========== 配置需求卡片 ========== */
+.requirements-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.req-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.req-card:hover {
+    transform: translateY(-5px);
+}
+
+.req-card.recommended {
+    border: 3px solid #07C160;
+    background: linear-gradient(135deg, rgba(7, 193, 96, 0.1), rgba(255,255,255,0.95));
+}
+
+.req-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: linear-gradient(135deg, #07C160, #06AD56);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
     font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.req-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.req-icon {
+    font-size: 2rem;
+}
+
+.req-header h2 {
+    color: #333;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.req-card .spec-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.req-card .spec-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.req-card .spec-list li:last-child {
+    border-bottom: none;
+}
+
+.spec-label {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.spec-value {
+    color: #333;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.tips-card {
+    background: linear-gradient(135deg, #fff9e6, #fff);
+}
+
+.tips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tips-list li {
+    padding: 10px 0;
+    color: #555;
+    font-size: 0.95rem;
+    border-bottom: 1px dashed #eee;
+}
+
+.tips-list li:last-child {
+    border-bottom: none;
 }
 
 /* 配置列表 */
@@ -299,6 +513,24 @@ body {
         padding: 20px;
     }
 
+    /* 卡片网格移动端 */
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .feature-card {
+        padding: 25px 20px;
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+    }
+
+    .feature-card h2 {
+        font-size: 1.1rem;
+    }
+
     /* 恐龙卡片移动端 */
     .dino-card {
         flex-direction: column;
@@ -315,6 +547,19 @@ body {
 
     .dino-info h2 {
         font-size: 1.1rem;
+    }
+
+    .dino-img-wrap {
+        height: 160px;
+    }
+
+    /* 配置需求移动端 */
+    .requirements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .req-card {
+        padding: 20px;
     }
 
     .content-card h2 {
