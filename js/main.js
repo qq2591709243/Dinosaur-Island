@@ -1,20 +1,32 @@
 // QQ 群号
 const QQ_GROUP_NUMBER = '119568196';
 
-// 复制 QQ 群号
+// 自动拉起 QQ 加群
 function copyQQGroup() {
-    // 创建文本区域
-    const textarea = document.createElement('textarea');
-    textarea.value = QQ_GROUP_NUMBER;
-    document.body.appendChild(textarea);
+    const groupNum = QQ_GROUP_NUMBER;
     
-    // 选择并复制
-    textarea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textarea);
+    // 获取用户代理信息
+    const ua = navigator.userAgent.toLowerCase();
     
-    // 提示用户
-    alert('群号已复制！\n\n请打开 QQ，进入"添加"-"查找群"，粘贴群号加群。\n\nQQ群号：' + QQ_GROUP_NUMBER);
+    // 方案1：使用 QQ 群链接（推荐，会自动拉起 QQ）
+    const qqGroupUrl = `https://qm.qq.com/cgi-bin/qm/qr?k=${groupNum}`;
+    
+    // 方案2：使用 QQ 深链接（Android/iOS）
+    const qqDeepLink = `tencent://groupwpa/?v=3&uin=${groupNum}&site=qq&menu=yes`;
+    
+    // 如果是移动设备，先尝试深链接
+    if (/mobile|android|ios|iphone|ipad/i.test(ua)) {
+        // 先尝试深链接
+        window.location.href = qqDeepLink;
+        
+        // 延迟 2 秒后如果还没打开 QQ，则尝试网页链接
+        setTimeout(() => {
+            window.location.href = qqGroupUrl;
+        }, 2000);
+    } else {
+        // 桌面浏览器，直接打开网页链接
+        window.open(qqGroupUrl, '_blank');
+    }
 }
 
 // 显示微信群二维码
