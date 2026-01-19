@@ -1,5 +1,5 @@
 // QQ 群号
-const QQ_GROUP_NUMBER = '1077790221';
+const QQ_GROUP_NUMBER = '119568196';
 
 // 复制 QQ 群号
 function copyQQGroup() {
