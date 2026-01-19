@@ -90,6 +90,16 @@ body {
     background: linear-gradient(135deg, #06AD56, #059A4C);
 }
 
+/* 群号提示 */
+.group-info {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
 /* ========== 移动端适配 ========== */
 @media screen and (max-width: 768px) {
     body {
