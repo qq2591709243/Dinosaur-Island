@@ -1,41 +1,222 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-     <meta name="baidu-site-verification" content="codeva-ORvtsjKdYC" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>恐龙岛一对一教学 - 专业恐龙岛游戏教学服务</title>
-    <meta name="description" content="恐龙岛一对一教学，专业玩家指导新手入门，快速掌握恐龙岛游戏技巧。提供霸王龙、迅猛龙等恐龙玩法教程，加入我们的QQ群一起玩恐龙岛！">
-    <meta name="keywords" content="恐龙岛,恐龙岛教学,恐龙岛攻略,恐龙岛新手教程,The Isle,恐龙游戏,一对一教学">
-    <meta name="author" content="恐龙岛教学">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://qq2591709243.github.io/Dinosaur-Island/">
-    <link rel="stylesheet" href="css/styles.css">
+    <title>恐龙岛(巨兽岛)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 全局样式 */
+        .btn-primary:hover { background-color: rgba(255,122,0,0.9); }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft Yahei", sans-serif;
+            color: #fff;
+        }
+        /* 固定导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        /* 轮播图样式 */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-slide {
+            min-width: 100%;
+        }
+        .carousel-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+        .dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+        .dot.active {
+            background: #ffc107;
+        }
+        /* 各区块高度适配 */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <!-- 右上角导航 -->
-    <nav class="top-nav">
-        <a href="features.html">游戏特色</a>
-        <a href="dinosaurs.html">恐龙种类</a>
-        <a href="requirements.html">配置需求</a>
-    </nav>
-
-    <div class="center-container">
-        <h1>恐龙岛一对一教学,欢迎加入我们</h1>
-        <p>点击下方按钮加入群聊</p>
-        <div class="button-group">
-            <!-- QQ群号：119568196 -->
-            <a href="https://qm.qq.com/cgi-bin/qm/qr?k=119568196" target="_blank" class="join-btn qq-btn">
-                加入 QQ 群
-            </a>
-            <a href="javascript:void(0);" class="join-btn wechat-btn" onclick="showWechatQR()">
-                加入微信群
-            </a>
-        </div>
-        <!-- 备用：如果按钮点击无效，显示群号 -->
-        <p class="group-info">QQ群号：119568196（复制群号到QQ中搜索）</p>
+<!-- 固定导航栏 -->
+<nav class="navbar py-3 px-6 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+        <img src="./files/logo.jpg" alt="恐龙岛Logo" class="w-30 h-10 rounded">
+        <h1 class="text-xl md:text-2xl font-bold text-yellow-400">恐龙岛(巨兽岛)</h1>
     </div>
-    
-    <script src="js/main.js"></script>
+    <div class="hidden md:flex gap-6">
+        <a href="#home" class="hover:text-yellow-400 transition-colors">首页</a>
+        <a href="#about" class="hover:text-yellow-400 transition-colors">关于游戏</a>
+        <a href="#screenshots" class="hover:text-yellow-400 transition-colors">内容展示</a>
+        <a href="#contact" class="hover:text-yellow-400 transition-colors">联系客服</a>
+    </div>
+</nav>
+
+<!--&lt;!&ndash; Hero 区域 &ndash;&gt;-->
+<!--<section id="home" class="section bg-cover bg-center pt-20" style="background-image: url(./files/kongl.webm)">-->
+<!--    <h2 class="text-3xl md:text-4xl font-bold mb-4">一款恐龙类型的生存冒险游戏</h2>-->
+<!--    <p class="text-lg mb-8">探索未知，生存下去，成为岛屿的主宰。</p>-->
+<!--    <button class="px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full font-bold hover:opacity-90 transition-opacity">-->
+<!--        下载游戏-->
+<!--    </button>-->
+<!--</section>-->
+<!-- Hero 区域 -->
+<section id="home" class="section bg-cover bg-center pt-20 relative overflow-hidden">
+    <!-- 视频背景 -->
+    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+        <source src="./files/kongl.webm" type="video/webm">
+        您的浏览器不支持视频标签。
+    </video>
+
+    <!-- 内容层 - 添加z-index确保文字在视频上方 -->
+    <div class="relative z-10 text-center">
+        <h1 class="text-3xl md:text-6xl font-bold mb-4 text-white">一款恐龙类型的生存冒险游戏</h1>
+        <p class="text-lg md:text-2xl mb-8 text-white" style="color: #DDDDDD">探索未知，生存下去，成为岛屿的主宰。</p>
+        <!-- QQ群和微信群按钮 -->
+        <div class="flex flex-col md:flex-row gap-4 justify-center">
+            <button onclick="joinQQGroup()" class="px-10 py-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-md font-bold text-white hover:opacity-90 transition-opacity">
+                加入 QQ 群
+            </button>
+            <button onclick="joinWechat()" class="px-10 py-4 bg-gradient-to-r from-green-400 to-green-600 rounded-md font-bold text-white hover:opacity-90 transition-opacity">
+                加入微信群
+            </button>
+        </div>
+        <p class="mt-4 text-sm text-gray-300">QQ群号：119568196 | 点击按钮复制群号</p>
+    </div>
+</section>
+
+
+<!-- 游戏介绍区域 -->
+<!--<section id="about" class="section bg-cover bg-center" style="background-image: url('./files/222.jpeg')">-->
+<!--    <h2 class="text-3xl font-bold mb-6 text-yellow-400">游戏介绍</h2>-->
+<!--    <div class="max-w-3xl mx-auto space-y-4 text-left">-->
+<!--        <p>这是一款非常有趣的恐龙类型的生存冒险游戏。玩家扮演的恐龙出生在一个充满未知与危险的侏罗纪岛屿，这里生活着各种形态各异的恐龙。玩家需要在这个危机四伏的原始世界中生存下去，并探索岛屿的秘密。</p>-->
+<!--        <p>在这座岛屿中，想要提高生存率，那么最好进入一个团队，每个团队都有自己的领地，可以放心地在自己团队的领地培养恐龙。</p>-->
+<!--        <p>游戏中可以按WASD进行移动，同时可以按住SHIFT+WASD进行奔跑。</p>-->
+<!--        <p>游戏中可以使用鼠标进行攻击，一般使用鼠标左键攻击，某些恐龙有两种攻击方式，第二种攻击方式是右键攻击。在与其他恐龙战斗时，可以根据不同的恐龙采用不同的战术，可以选择不同的攻击方式、走位方式、地形等。</p>-->
+<!--        <p>击杀恐龙、吃肉、喝水能获得经验，经验满之后可以进化。</p>-->
+<!--    </div>-->
+<!--</section>-->
+<section id="about" class="section bg-cover bg-center" style="background-image: url('./files/222.jpeg')">
+    <h2 class="text-5xl font-bold mb-10 text-yellow-400 text-center">游戏介绍</h2>
+    <div class="max-w-3xl mx-auto space-y-6 text-center">
+        <p class="text-lg leading-relaxed">这是一款非常有趣的恐龙类型的生存冒险游戏。玩家扮演的恐龙出生在一个充满未知与危险的侏罗纪岛屿，这里生活着各种形态各异的恐龙。玩家需要在这个危机四伏的原始世界中生存下去，并探索岛屿的秘密。</p>
+        <p class="text-lg leading-relaxed">在这座岛屿中，想要提高生存率，那么最好进入一个团队，每个团队都有自己的领地，可以放心地在自己团队的领地培养恐龙。</p>
+        <p class="text-lg leading-relaxed">游戏中可以按WASD进行移动，同时可以按住SHIFT+WASD进行奔跑。</p>
+        <p class="text-lg leading-relaxed">游戏中可以使用鼠标进行攻击，一般使用鼠标左键攻击，某些恐龙有两种攻击方式，第二种攻击方式是右键攻击。在与其他恐龙战斗时，可以根据不同的恐龙采用不同的战术，可以选择不同的攻击方式、走位方式、地形等。</p>
+        <p class="text-lg leading-relaxed">击杀恐龙、吃肉、喝水能获得经验，经验满之后可以进化。</p>
+    </div>
+</section>
+
+
+<!-- 游戏截图轮播 -->
+<section id="screenshots" class="section bg-black pt-20" style="background-image: url('./files/333.jpeg')">
+    <h2 class="text-3xl font-bold mb-8 text-yellow-400">游戏截图</h2>
+    <div class="carousel w-full max-w-5xl mx-auto h-[400px]">
+        <div class="carousel-track h-full">
+            <div class="carousel-slide h-full">
+                <img src="./files/example1.jpg" alt="游戏截图1" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div class="carousel-slide h-full">
+                <img src="./files/example2.jpg" alt="游戏截图2" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div class="carousel-slide h-full">
+                <img src="./files/example3.jpg" alt="游戏截图3" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div class="carousel-slide h-full">
+                <img src="./files/example4.jpg" alt="游戏截图4" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div class="carousel-slide h-full">
+                <img src="./files/example5.jpg" alt="游戏截图5" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div class="carousel-slide h-full">
+                <img src="./files/example6.jpg" alt="游戏截图6" class="w-full h-full object-cover rounded-lg">
+            </div>
+        </div>
+        <div class="carousel-dots">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+            <div class="dot" data-index="3"></div>
+            <div class="dot" data-index="4"></div>
+            <div class="dot" data-index="5"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer id="contact" class="bg-black py-6 px-4 text-center text-sm">
+    <p class="mb-2">《健康游戏忠告》抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。</p>
+    <p class="mb-2">本网络游戏适合年满18岁以上的用户使用，为了您的健康，请合理控制游戏时间。</p>
+    <p>© 2025 恐龙岛 | 开发者: 丐溜子帮帮主伏凉（づ￣3￣）づ╭❤️～</p>
+</footer>
+
+<script>
+    // 轮播图逻辑
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentIndex = 0;
+
+    function goToSlide(index) {
+        currentIndex = index;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToSlide(index));
+    });
+
+    // 自动轮播
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        goToSlide(currentIndex);
+    }, 3000);
+
+    // 导航栏滚动效果
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('bg-black');
+            navbar.classList.remove('bg-opacity-80');
+        } else {
+            navbar.classList.add('bg-opacity-80');
+            navbar.classList.remove('bg-black');
+        }
+    });
+</script>
 </body>
 </html>
