@@ -1,12 +1,31 @@
 // QQ 群号
-const QQ_GROUP_NUMBER = '119568196';
-// QQ 群邀请链接
+const QQ_GROUP_NUMBER = '1077790221';
+// QQ 群邀请链接（网页版）
 const QQ_GROUP_LINK = 'https://qun.qq.com/universal-share/share?ac=1&authKey=7zKdhBBizvnyxPRV6%2Bn6E2SR5qEqXLaoVPsnR%2BiE9gXBsh%2FvERNzav34%2BG9ToCAQ&busi_data=eyJncm91cENvZGUiOiIxMDc3NzkwMjIxIiwidG9rZW4iOiJ3amFRVUxhTDRXb3FJaEtEZUVWS1hlWG9WM2VPN0tSbDdQQXlmSlRJSnRsdEtwZjJqQWY1bmN5d0pHLzh3aVZGIiwidWluIjoiMTU3Njk0MzkxNiJ9&data=_rTmt4nmU10ZYUA6CPpOWCflBNjS2Hg4CRwMPF8Ll5KjrLPQeMAzJtvlaAgqeRKNtybe1iJcujNslQSjA8EQmQ&svctype=4&tempid=h5_group_info';
 
 // 加入 QQ 群
 function joinQQGroup() {
-    // 直接跳转到 QQ 群邀请链接
-    window.open(QQ_GROUP_LINK, '_blank');
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // 移动端：尝试拉起 QQ 应用
+        // 使用 mqqapi 协议拉起 QQ 群
+        const qqScheme = `mqqapi://card/show_pslcard?src_type=internal&version=1&uin=${QQ_GROUP_NUMBER}&card_type=group&source=qrcode`;
+        
+        // 备用方案：使用 tencent 协议
+        const qqDeepLink = `mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D${QQ_GROUP_NUMBER}`;
+        
+        // 尝试打开 QQ
+        window.location.href = qqScheme;
+        
+        // 2秒后如果没有跳转成功，打开网页版链接
+        setTimeout(() => {
+            window.location.href = QQ_GROUP_LINK;
+        }, 2000);
+    } else {
+        // 桌面端：直接打开网页版邀请链接
+        window.open(QQ_GROUP_LINK, '_blank');
+    }
 }
 
 // 加入微信群 - 显示二维码弹窗
