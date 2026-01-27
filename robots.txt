@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qq2591709243.github.io/Dinosaur-Island/sitemap.xml
+Sitemap: https://klongdao.xyz/sitemap.xml
