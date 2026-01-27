@@ -1,24 +1,12 @@
 // QQ 群号
 const QQ_GROUP_NUMBER = '1077790221';
-// QQ 群邀请链接（网页版）
-const QQ_GROUP_LINK = 'https://qun.qq.com/universal-share/share?ac=1&authKey=7zKdhBBizvnyxPRV6%2Bn6E2SR5qEqXLaoVPsnR%2BiE9gXBsh%2FvERNzav34%2BG9ToCAQ&busi_data=eyJncm91cENvZGUiOiIxMDc3NzkwMjIxIiwidG9rZW4iOiJ3amFRVUxhTDRXb3FJaEtEZUVWS1hlWG9WM2VPN0tSbDdQQXlmSlRJSnRsdEtwZjJqQWY1bmN5d0pHLzh3aVZGIiwidWluIjoiMTU3Njk0MzkxNiJ9&data=_rTmt4nmU10ZYUA6CPpOWCflBNjS2Hg4CRwMPF8Ll5KjrLPQeMAzJtvlaAgqeRKNtybe1iJcujNslQSjA8EQmQ&svctype=4&tempid=h5_group_info';
-// QQ 群 Key（从群设置-加群链接获取）
-const QQ_GROUP_KEY = 'your_group_key_here';
+// QQ 官方加群链接（可以直接拉起 QQ）
+const QQ_GROUP_LINK = 'https://qm.qq.com/q/Y2gOGBwv2S';
 
 // 加入 QQ 群
 function joinQQGroup() {
-    const ua = navigator.userAgent;
-    const isAndroid = /Android/i.test(ua);
-    const isIOS = /iPhone|iPad|iPod/i.test(ua);
-    const isMobile = isAndroid || isIOS;
-    
-    if (isMobile) {
-        // 移动端：直接跳转到 QQ 群邀请链接，会自动拉起 QQ
-        window.location.href = QQ_GROUP_LINK;
-    } else {
-        // 桌面端：打开网页版邀请链接
-        window.open(QQ_GROUP_LINK, '_blank');
-    }
+    // 直接跳转到 QQ 官方加群链接，会自动拉起 QQ 应用
+    window.location.href = QQ_GROUP_LINK;
 }
 
 // 加入微信群 - 显示二维码弹窗
