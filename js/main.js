@@ -2,8 +2,6 @@
 const QQ_GROUP_NUMBER = '1077790221';
 // QQ 官方加群链接
 const QQ_GROUP_LINK = 'https://qm.qq.com/q/Y2gOGBwv2S';
-// QQ 加群 URL Scheme（可直接唤起 QQ 应用）
-const QQ_GROUP_KEY = '7daKw1GClW9buPh47wYMr2m2xzGsGiHy'; // 从 QQ 群设置获取的加群 key
 
 // 加入 QQ 群
 function joinQQGroup() {
@@ -16,33 +14,45 @@ function joinQQGroup() {
         // 微信中直接跳转到 QQ 官方链接
         window.location.href = QQ_GROUP_LINK;
     } else if (isMobile) {
-        // 移动端尝试使用 URL Scheme 唤起 QQ
+        // 移动端：尝试使用 URL Scheme 直接唤起 QQ
         let qqScheme;
-        if (isAndroid) {
-            // Android QQ URL Scheme
-            qqScheme = `mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D${QQ_GROUP_KEY}`;
-        } else if (isIOS) {
-            // iOS QQ URL Scheme
-            qqScheme = `mqqapi://card/show_pslcard?src_type=internal&version=1&uin=${QQ_GROUP_NUMBER}&card_type=group&source=qrcode`;
-        }
         
-        // 尝试唤起 QQ，如果失败则跳转到网页版
-        if (qqScheme) {
-            const startTime = Date.now();
+        if (isAndroid) {
+            // Android: 使用 intent 方式唤起 QQ 加群
+            qqScheme = `intent://openminiapp?appid=1108224574&path=pages/group-qr/index?gid=${QQ_GROUP_NUMBER}#Intent;scheme=mqqapi;package=com.tencent.mobileqq;end`;
+            // 备用方案：直接用群号
+            const backupScheme = `mqqwpa://im/chat?chat_type=group&uin=${QQ_GROUP_NUMBER}&version=1`;
+            
+            // 创建隐藏的 iframe 尝试唤起
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = backupScheme;
+            document.body.appendChild(iframe);
+            
+            // 延迟后跳转网页版作为兜底
+            setTimeout(function() {
+                document.body.removeChild(iframe);
+                window.location.href = QQ_GROUP_LINK;
+            }, 1500);
+            return;
+            
+        } else if (isIOS) {
+            // iOS: 使用群号直接唤起
+            qqScheme = `mqqapi://card/show_pslcard?src_type=internal&version=1&uin=${QQ_GROUP_NUMBER}&card_type=group&source=qrcode`;
+            
             window.location.href = qqScheme;
             
-            // 2秒后检查是否成功唤起，如果没有则跳转到网页
+            // 延迟跳转网页版作为兜底
             setTimeout(function() {
-                if (Date.now() - startTime < 2500) {
-                    // 没有成功唤起 QQ，跳转到网页版
-                    window.location.href = QQ_GROUP_LINK;
-                }
+                window.location.href = QQ_GROUP_LINK;
             }, 2000);
-        } else {
-            window.location.href = QQ_GROUP_LINK;
+            return;
         }
+        
+        // 其他情况直接跳转网页
+        window.location.href = QQ_GROUP_LINK;
     } else {
-        // PC 端直接打开 QQ 官方加群页面
+        // PC 端：直接打开 QQ 官方加群页面
         window.open(QQ_GROUP_LINK, '_blank');
     }
 }
