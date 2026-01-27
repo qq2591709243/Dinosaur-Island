@@ -3,5 +3,5 @@ Allow: /
 
 Sitemap: https://klongdao.xyz/sitemap.xml
 
-# Last updated: 2026-01-27
+
 # Webhook test: success
