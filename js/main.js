@@ -53,7 +53,7 @@ function joinWechat() {
     overlay.innerHTML = `
         <div style="background: white; padding: 20px; border-radius: 15px; text-align: center; max-width: 350px;">
             <h3 style="color: #07C160; margin-bottom: 15px; font-size: 20px;">扫码加入微信群</h3>
-            <img src="./files/20260116161634.png" alt="微信群二维码" style="width: 250px; height: 250px; border-radius: 10px;">
+            <img src="./files/20260116161634.png?v=${Date.now()}" alt="微信群二维码" style="width: 250px; height: 250px; border-radius: 10px;">
             <p style="color: #666; margin-top: 15px; font-size: 14px;">长按或扫描二维码加入群聊</p>
             <button onclick="closeWechatPopup()" style="margin-top: 15px; padding: 10px 30px; background: #07C160; color: white; border: none; border-radius: 25px; cursor: pointer; font-size: 16px;">关闭</button>
         </div>
