@@ -39,26 +39,32 @@ function joinWechat() {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.8);
+        background: rgba(255, 255, 255, 1);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 9999;
     `;
     
-    // 创建弹窗内容
+    // 检测是否在微信中打开
+    const isWechat = /micromessenger/i.test(navigator.userAgent);
     const isMobile = /mobile|android|ios|iphone|ipad/i.test(navigator.userAgent.toLowerCase());
-    const tipText = isMobile 
-        ? '📱 长按图片保存，打开微信扫一扫' 
-        : '💻 请用微信扫描二维码加入群聊';
+    
+    let tipText = '';
+    if (isWechat) {
+        tipText = '👆 长按上方二维码，选择「识别图中二维码」';
+    } else if (isMobile) {
+        tipText = '📱 长按保存图片，用微信扫一扫';
+    } else {
+        tipText = '💻 请用微信扫描二维码';
+    }
     
     overlay.innerHTML = `
-        <div style="background: white; padding: 20px; border-radius: 15px; text-align: center; max-width: 350px; margin: 0 15px;">
-            <h3 style="color: #07C160; margin-bottom: 15px; font-size: 20px;">加入微信群</h3>
-            <img src="./files/20260116161634.png?v=${Date.now()}" alt="微信群二维码" style="width: 250px; height: 250px; border-radius: 10px;">
-            <p style="color: #666; margin-top: 15px; font-size: 14px;">${tipText}</p>
-            <p style="color: #999; margin-top: 8px; font-size: 12px;">微信群无法直接跳转，请手动扫码</p>
-            <button onclick="closeWechatPopup()" style="margin-top: 15px; padding: 10px 30px; background: #07C160; color: white; border: none; border-radius: 25px; cursor: pointer; font-size: 16px;">关闭</button>
+        <div style="background: white; padding: 30px; text-align: center; width: 100%; max-width: 400px;">
+            <h3 style="color: #07C160; margin-bottom: 20px; font-size: 22px; font-weight: bold;">加入微信群</h3>
+            <img src="./files/20260116161634.png?v=${Date.now()}" alt="微信群二维码" style="width: 280px; height: 280px; display: block; margin: 0 auto;">
+            <p style="color: #07C160; margin-top: 20px; font-size: 16px; font-weight: bold;">${tipText}</p>
+            <button onclick="closeWechatPopup()" style="margin-top: 20px; padding: 12px 40px; background: #07C160; color: white; border: none; border-radius: 25px; cursor: pointer; font-size: 16px;">关闭</button>
         </div>
     `;
     
