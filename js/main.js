@@ -1,34 +1,12 @@
 // QQ 群号
 const QQ_GROUP_NUMBER = '119568196';
+// QQ 群邀请链接
+const QQ_GROUP_LINK = 'https://qun.qq.com/universal-share/share?ac=1&authKey=7zKdhBBizvnyxPRV6%2Bn6E2SR5qEqXLaoVPsnR%2BiE9gXBsh%2FvERNzav34%2BG9ToCAQ&busi_data=eyJncm91cENvZGUiOiIxMDc3NzkwMjIxIiwidG9rZW4iOiJ3amFRVUxhTDRXb3FJaEtEZUVWS1hlWG9WM2VPN0tSbDdQQXlmSlRJSnRsdEtwZjJqQWY1bmN5d0pHLzh3aVZGIiwidWluIjoiMTU3Njk0MzkxNiJ9&data=_rTmt4nmU10ZYUA6CPpOWCflBNjS2Hg4CRwMPF8Ll5KjrLPQeMAzJtvlaAgqeRKNtybe1iJcujNslQSjA8EQmQ&svctype=4&tempid=h5_group_info';
 
 // 加入 QQ 群
 function joinQQGroup() {
-    const groupNum = QQ_GROUP_NUMBER;
-    
-    // 获取用户代理信息
-    const ua = navigator.userAgent.toLowerCase();
-    
-    // QQ 群链接
-    const qqGroupUrl = `https://qm.qq.com/cgi-bin/qm/qr?k=${groupNum}`;
-    
-    // QQ 深链接（Android/iOS）
-    const qqDeepLink = `tencent://groupwpa/?v=3&uin=${groupNum}&site=qq&menu=yes`;
-    
-    // 如果是移动设备，先尝试深链接
-    if (/mobile|android|ios|iphone|ipad/i.test(ua)) {
-        // 先尝试深链接
-        window.location.href = qqDeepLink;
-        
-        // 延迟 2 秒后如果还没打开 QQ，则复制群号
-        setTimeout(() => {
-            copyToClipboard(groupNum);
-            alert('群号已复制！\n\n请打开 QQ，搜索群号加群。\n\nQQ群号：' + groupNum);
-        }, 2000);
-    } else {
-        // 桌面浏览器，复制群号并提示
-        copyToClipboard(groupNum);
-        alert('群号已复制！\n\n请打开 QQ，搜索群号加群。\n\nQQ群号：' + groupNum);
-    }
+    // 直接跳转到 QQ 群邀请链接
+    window.open(QQ_GROUP_LINK, '_blank');
 }
 
 // 加入微信群 - 显示二维码弹窗
